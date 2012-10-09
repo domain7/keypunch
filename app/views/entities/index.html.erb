@@ -1,0 +1,27 @@
+<% content_for :side_column do %>
+  <%= render :partial => "entities/actions" %>
+  <%= render :partial => "groups/group_tree" %>
+<% end %>
+
+<%= render :partial => "entities/search_form" %>
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+<p><%=raw page_entries_info @entities %></p>
+<table id="entities" class="zebra-striped">
+  <thead>
+    <th class="blue header"><%= sortable('entities.name','Name') %></th>
+    <th class="blue header">Group</th>
+  </thead>
+  <tbody>
+    <% @entities.each do |e| %>
+      <tr id="<%= dom_id(e) %>">
+        <td><%= link_to(e.name, entity_path(e)) %></td>
+        <td>
+          <% e.groups.each do |group| %>
+            <div><%= link_to(group.title, group_path(group)) %></div>
+          <% end %>
+         </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

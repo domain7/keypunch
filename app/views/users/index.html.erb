@@ -1,0 +1,19 @@
+<% content_for :side_column do %>
+<% end %>
+
+<p><%=raw page_entries_info @users %></p>
+<table id="users" class="zebra-striped">
+  <thead>
+    <th class="blue header">Email</th>
+    <th class="blue header">Name</th>
+  </thead>
+  <tbody>
+    <% @users.each do |e| %>
+      <tr id="<%= dom_id(e) %>">
+        <td><%= link_to(e.email, user_path(e)) %></td>
+        <td><%= e.full_name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @users, :inner_window => 2 %>

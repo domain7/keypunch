@@ -1,0 +1,14 @@
+<%= render :file => "layouts/shared/head" %>
+<%= render :file => "layouts/shared/top_nav" %>
+<%= render :file => "layouts/shared/app_nav_top" %>
+<%= render :file => "layouts/shared/flashes" %>
+<div class="row">
+  <div class="eight columns">
+    <%= yield %>
+  </div>
+  <div class="four columns">
+    <%= yield :side_column %>
+  </div>
+</div>
+<%= render :file => "layouts/shared/app_nav_mobile" %>
+<%= render :file => "layouts/shared/foot" %>

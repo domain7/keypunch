@@ -1,0 +1,7 @@
+<%= form_for @group, :html => { :class => 'nice' } do |f| %>
+  <%= f.label :ancestry, "Parent Group" %>
+  <%= f.select "ancestry", Group.all.collect { |g| [ g.title, g.id ] } %>
+  <%= f.label :title, "Title" %>
+  <%= f.text_field :title, :class => 'input-text'  %>
+  <%= f.submit "Save", 'data-disable-with' => 'Saving...', :class => 'nice large blue radius button' %>
+<% end %>

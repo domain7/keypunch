@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="twelve columns">
+<%- if !flash.empty? or content_for?(:errors) -%>
+    <%- %w(alert success notice error warning).each do |name| -%>
+      <%- if flash[name.to_sym] -%>
+        <%- if 'notice' == name
+              css_class = 'success'
+            elsif 'alert' == name
+              css_class = 'error'
+            else
+              css_class = name
+            end -%>
+            <div class="alert-box <%= css_class %>">
+              <%= flash[name.to_sym] %>
+              <%= link_to 'x', '#', :class => 'close' %>
+            </div>
+        <% flash[name.to_sym] = nil %>
+      <%- end -%>
+    <%- end -%>
+    <%= yield :errors %>
+  <%- end -%>
+  </div>
+</div>

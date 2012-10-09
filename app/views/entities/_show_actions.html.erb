@@ -1,0 +1,8 @@
+<div class="panel">
+  <p>
+    <%= link_to("Edit", edit_entity_path(@entity), :class => "nice radius blue button mobile") %>
+  </p>
+    <% if current_user.role?('admin') -%>
+      <%= button_to("Delete", entity_path, :method => :delete, :class => "nice radius red button mobile") %>
+    <% end -%>
+</div>

@@ -1,0 +1,96 @@
+<% content_for :side_column do %>
+  <%= render :partial => "entities/show_actions" %>
+<% end %>
+
+<% content_for :head_javascript do %>
+  <%= javascript_tag do -%>
+    var e_path = '<%= show_password_entity_path(@entity) %>';
+  <% end -%>
+  <%= javascript_include_tag("/javascripts/entity_show") %>
+<% end %>
+
+<h1><%= title @entity.name %></h1>
+<hr />
+
+<p><strong>Groups:</strong></p>
+<ul id="group_list">
+<% @entity.groups.each do |group| %>
+  <li id="group_<%= dom_id(group) %>"><%= link_to(group.title, group_path(group)) %></li>
+<% end %>
+</ul>
+
+<table id="entity_<%= dom_id(@entity) %>" class="entry">
+  <tbody><tr>
+      <td>Username</td>
+      <td><%= @entity.username %></td>
+    </tr>
+    <tr>
+      <td>Password</td>
+      <td><input type="text" id="cpasswd" value="****************" readonly="readonly" /> <a href="#" id="get_passwd" class="small nice black button radius">Show</a>
+    </tr>
+    <tr>
+      <td>Description</td>
+      <td><pre><%= @entity.description %></pre></td>
+    </tr>
+    <tr>
+      <td>Protocol</td>
+      <td><%= @entity.protocol %></td>
+    </tr>
+    <tr>
+      <td>Domain</td>
+      <td>
+      <%- if @entity.domain_linkable? %>
+        <%= link_to(@entity.domain, @entity.domain, :target =>'_blank') %>
+      <%- else%>
+        <%= @entity.domain %>
+      <%- end%>
+      </td>
+    </tr>
+    <tr>
+      <td>Expires</td>
+      <td><%= @entity.expire_at %></td>
+    </tr>
+    <tr>
+      <td>Created</td>
+      <td><%= @entity.created_at %></td>
+    </tr>
+    <tr>
+      <td>Modified</td>
+      <td><%= @entity.updated_at %></td>
+    </tr>
+<% if @current_user.role?('admin') %>
+    <tr>
+      <td>Roles</td>
+      <td id="role_ids"><%= @entity.display_roles %></td>
+    </tr>
+    <tr>
+      <td>Users</td>
+      <td id="user_ids"><%= @entity.display_users %></td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<% if @current_user.role?('admin') && @versions && @versions.count > 0 %>
+  <h3>Changes</h3>
+  <table id="<%= dom_id(@entity) %>_versions" class="entry">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Event</th>
+        <th>Who</th>
+        <th>Changes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @versions.each do |e| %>
+        <tr id="<%= dom_id(e) %>">
+          <td><%= e.created_at %></td>
+          <td><%= e.event %></td>
+          <td><%= User.find(e.whodunnit).email if e.whodunnit and User.find_by_id(e.whodunnit) %></td>
+          <td><%= e.changeset %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

@@ -1,0 +1,40 @@
+<% content_for :head_javascript do %>
+  <%= javascript_include_tag("/javascripts/jquery.pwdstr.js") %>
+  <%= javascript_tag do -%>
+    $(document).ready(function() {
+        $('#entity_password').pwdstr('#timehack');
+        $(".chzn-select").chosen();
+    });
+  <% end -%>
+<% end %>
+
+<%= form_for @entity, :html => { :class => 'nice' } do |f| %>
+  <%= f.label :name, "Name" %>
+  <%= f.text_field :name, :class => 'input-text' %>
+  <%= f.label :group_ids, "Groups" %>
+  <%= f.select(:group_ids,
+    options_for_select(@group_options.collect { |i| [i.title, i.id] }, @entity.group_ids),
+    { :id => "entity_group_ids", :name => "group[group_ids][]" },
+    { :multiple => true, :size => 6, :class => "chzn-select" } ) 
+  %>
+  <%= f.label :username, "Username" %>
+  <%= f.text_field :username, :class => 'input-text' %>
+  <%= f.label :password, "Password" %>
+  <%= f.password_field :password, :class => 'input-text' %>
+  <%= f.label :password_confirmation, "Password confirmation" %>
+  <%= f.password_field :password_confirmation, :class => 'input-text' %>
+  <p id="hacktip">Time to bruteforce this password:<span id="timehack">None</span></p>
+  <%= f.label :description, "Description" %>
+  <%= f.text_area :description, :class => 'input-text', :rows => '8' %>
+  <%= f.label :protocol, "Protocol" %>
+  <%= f.text_field :protocol, :class => 'input-text' %>
+  <%= f.label :domain, "URL" %>
+  <%= f.text_field :domain, :class => 'input-text' %>
+  <% if @current_user.role?('admin') %>
+    <%= f.label :role_ids, "Roles" %>
+    <%= f.select(:role_ids, options_for_select(Role.all.collect { |i| [i.name, i.id] }, @entity.role_ids), { :id => "entity_role_ids", :name => "role[role_ids][]" }, { :multiple => true, :size => 6, :class => "chzn-select" } ) %>
+    <%= f.label :user_ids, "Users" %>
+    <%= f.select(:user_ids, options_for_select(User.all.collect { |i| [i.email, i.id] }, @entity.user_ids), { :id => "entity_user_ids", :name => "user[user_ids][]" }, { :multiple => true, :size => 6, :class => "chzn-select" } ) %>
+  <% end  %>
+  <%= f.submit "Save", 'data-disable-with' => 'Saving...', :class => 'nice large blue radius button' %>
+<% end %>

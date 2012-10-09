@@ -1,0 +1,14 @@
+<%= render :file => "layouts/shared/head" %>
+<%= render :file => "layouts/shared/top_nav" %>
+<%#= render :file => "layouts/shared/app_nav_top" %>
+    <div class="row">
+      <div class="twelve columns">
+        <div class="foundation-header">
+          <h1><%= link_to "Keypunch", root_path %></h1>
+          <h4 class="subheader">Finally, a web solution for a common problem: group password management.</h4>
+        </div>
+      </div>
+    </div>
+<%= render :file => "layouts/shared/flashes" %>
+    <%= yield %>
+<%= render :file => "layouts/shared/foot" %>

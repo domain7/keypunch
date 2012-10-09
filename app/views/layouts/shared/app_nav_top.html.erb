@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="twelve columns">
+    <dl class="nice tabs mobile hide-on-phones">
+      <dd><%= link_to "Search", entities_path, :class => "#{is_current_nav?('passwords')}" %></dd>
+        <% if current_user && current_user.role?(:admin) -%>
+        <dd><%= link_to "Groups", groups_path, :class => "#{is_current_nav?('groups')}" %></dd>
+        <dd><%= link_to "Users", users_path, :class => "#{is_current_nav?('users')}" %></dd>
+        <dd><%= link_to "Import", new_keepas_path, :class => "#{is_current_nav?('keepass')}" %></dd>
+      <% end %>
+    </dl>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+<% content_for :side_column do %>
+  <%= render :partial => "entities/actions" %>
+  <%= render :partial => "groups/group_tree" %>
+<% end %>
+
+<h1><%= title @group.title %></h1>
+<hr />
+
+<p>
+  <ul class="breadcrumb">
+    <%= display_breadcrumb_trail(@group) %>
+  </ul>
+</p>
+
+<table id="entities" class="zebra-striped">
+  <thead>
+    <th class="blue header">Name</th>
+  </thead>
+  <tbody>
+    <% @entities.each do |e| %>
+      <tr id="<%= dom_id(e) %>">
+        <td><%= link_to(e.name, entity_path(e)) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<!--
+<h2>
+  <%= title "Group :#{@group.title}" %>
+  <%= link_to "Edit Group", edit_group_path(@group), :class => 'edit button' %>
+  <%= link_to "New Group", new_group_path, :class => 'create button' %>
+</h2>
+<%= render :partial => "groups/group_tree" %>
+<ol class="group-entities">
+  <% @entities.each do |e| %>
+    <li id="<%= dom_id(e) %>"><%= link_to(e.name, entity_path(e)) %></li>
+  <% end %>
+</ol>
+-->
+
+<% if @group.versions.count > 0 %>
+  <h3>Changes:</h3>
+  <ul>
+    <% @group.versions.order("id DESC").each do |e| %>
+      <li>
+        <ul>
+          <li>Event: <%= e.event %></li>
+          <li>Who: <%= User.find(e.whodunnit).email if e.whodunnit %></li>
+          <li>Date: <%= e.created_at %></li>
+          <li>Changeset: <%= e.changeset %></li>
+        </ul>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

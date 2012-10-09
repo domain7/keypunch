@@ -1,0 +1,13 @@
+#  Helpful for misc network commands via (ssh)
+development:
+  host: localhost
+  #user: local
+  #port: 22
+staging:
+  host: 127.0.0.1
+  #user: local
+  #port: 22
+production:
+  host: 184.106.242.154
+  #user: local
+  #port: 22

@@ -1,0 +1,16 @@
+<% content_for :side_column do %>
+  <%= render :partial => "groups/edit_actions" %>
+<% end %>
+
+<h1><%= title @group.title %></h1>
+<hr />
+
+<p>
+  <ul class="breadcrumb">
+    <% display_breadcrumb_trail(@group) %>
+  </ul>
+</p>
+
+<div class="panel">
+  <%= render :partial => 'form' %>
+</div>

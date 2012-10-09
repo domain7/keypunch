@@ -1,0 +1,8 @@
+<div class="panel">
+  <%= form_tag(entities_path, :method => :get, :class => "nice", :id => "search") do %>
+    <label for="search_phrase">Search</label>
+    <%= text_field_tag(:search_phrase, params[:search_phrase], :class => "input-text value") %> 
+    <%= submit_tag "Search", :name => nil, :class => "nice small blue radius button" %>  
+  <% end %> 
+</div>
+

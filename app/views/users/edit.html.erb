@@ -1,0 +1,11 @@
+<% content_for :side_column do %>
+  <%#= render :partial => "entities/edit_actions" %>
+<% end %>
+
+<p>
+  <strong>Email:</strong> <%= @user.email %>
+</p>
+
+<div class="panel">
+  <%= render :partial => 'form' %>
+</div>

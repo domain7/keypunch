@@ -1,0 +1,9 @@
+<div class="panel">
+  <p>
+    <% if @group.id %>
+      <%= link_to("Cancel", group_path(@group), :class => "nice radius white button mobile") %>
+    <% elsif @group.parent_id %>
+      <%= link_to("Cancel", group_path(@group.parent), :class => "nice radius white button mobile") %>
+    <% end %>
+  </p>
+</div>

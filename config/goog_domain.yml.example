@@ -1,0 +1,2 @@
+domain: example.com
+allow_password_login: true

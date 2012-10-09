@@ -1,0 +1,19 @@
+<body id="-page" class="">
+
+  <!-- ZURBar -->
+  <div id="zurBar" class="container">
+    <div class="row">
+      <div class="four columns">
+        <h1><%= link_to "Keypunch", root_path %></h1>
+      </div>
+      <% if current_user %>
+      <div class="eight columns">
+        <strong class="right">
+          <%= link_to "Logout", logout_path, :class => "nice small blue radius button" %>
+        </strong>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <!-- /ZURBar -->
+  <div class="container">

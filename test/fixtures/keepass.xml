@@ -1,0 +1,22 @@
+<!DOCTYPE KEEPASSX_DATABASE>
+<database>
+ <group>
+  <title>Clients</title>
+  <icon>58</icon>
+  <group>
+   <title>TESTER</title>
+   <icon>1</icon>
+   <entry>
+    <title>TESTER</title>
+    <username>USERNAME</username>>
+    <password>P@ssw0rd</password>>
+    <url>example.com</url>
+    <comment></comment>
+    <icon>0</icon>
+    <creation>2012-03-26T15:00:47</creation>
+    <lastaccess>2012-05-26T15:01:26</lastaccess>
+    <lastmod>2012-04-26T15:01:26</lastmod>
+    <expire>Never</expire>
+   </entry>
+ </group>
+</database>

@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="eight columns">
+    <div class="panel">
+      <% if Keypunch::Application.config.allow_password_login %>
+        <h3>Sign In</h3>
+        <%= form_for(User.new, :url => user_session_path, :html => { :class => 'nice' } ) do |f| %>
+          <%= f.label :email %>
+          <%= f.email_field :email, :class => 'input-text' %>
+          <%= f.label :password %>
+          <%= f.password_field :password, :class => 'input-text' %>
+          <%= f.submit "Login", :class => 'nice large radius blue button mobile' %>
+        <% end %>
+        <p><%= link_to "Login with Google", user_omniauth_authorize_path(:google_apps), :class => 'nice large radius blue button mobile' %></p>
+      <% else %>
+        <p><%= link_to "Login", user_omniauth_authorize_path(:google_apps), :class => 'nice large radius blue button mobile' %></p>
+      <% end %>
+    </div>
+  </div>
+  <% if false %>
+    <div class="four columns">
+      <dl class="nice tabs vertical">
+        <dd><%= link_to "Forgot your password?", new_user_password_path %></dd>
+        <dd><%= link_to "Sign in with your Google account.", user_omniauth_authorize_path(:google_apps) %></dd>
+      </dl>
+    </div>
+  <% end %>
+</div>
+

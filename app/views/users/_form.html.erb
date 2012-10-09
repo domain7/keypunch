@@ -1,0 +1,24 @@
+<% content_for :head_javascript do %>
+  <%= javascript_include_tag("/javascripts/jquery.pwdstr.js") %>
+  <%= javascript_tag do -%>
+    $(document).ready(function() {
+        $('#user_password').pwdstr('#timehack');
+        $(".chzn-select").chosen();
+    });
+  <% end -%>
+<% end %>
+<%= form_for @user, :html => { :class => 'nice' } do |f| %>
+  <%= f.label :first_name, "First name" %>
+  <%= f.text_field :first_name, :class => 'input-text' %>
+  <%= f.label :last_name, "Last name" %>
+  <%= f.text_field :last_name, :class => 'input-text' %>
+  <%= f.label :role_ids, "Roles" %>
+  <%= f.select(:role_ids, options_for_select(@roles.collect { |i| [i.name, i.id] }, @user.role_ids), { :id => "user_role_ids", :name => "role[role_ids][]" }, { :multiple => true, :size => 6, :class => "chzn-select" } ) %>
+  <%= f.label :password, "Password" %>
+  <%= f.password_field :password, :class => 'input-text' %>
+  <%= f.label :password_confirmation, "Password confirmation" %>
+  <%= f.password_field :password_confirmation, :class => 'input-text' %>
+  <p id="hacktip">Time to bruteforce this password:<span id="timehack">None</span></p>
+
+  <%= f.submit "Save", 'data-disable-with' => 'Saving...', :class => 'nice large blue radius button' %>
+<% end %>

@@ -1,0 +1,19 @@
+<div class="panel">
+  <p>
+    <% if @group and @group.is_childless? %>
+        <%= link_to("New Password", new_group_entity_path(@group), :class => "nice radius blue button mobile") %>
+    <% else %>
+        <%= link_to("New Password", new_entity_path, :class => "nice radius blue button mobile") %>
+    <% end %>
+  </p>
+</div>
+<% if current_user.role?('admin') && @group && @group.id %>
+<div class="panel">
+  <p>
+    <%= link_to("New Group", new_group_path(:group_id => @group.id), :class => "nice radius blue button mobile") %>
+  </p>
+  <p>
+    <%= link_to("Edit Group", edit_group_path(@group), :class => "nice radius blue button mobile") %>
+  </p>
+</div>
+<% end %>

@@ -1,0 +1,55 @@
+<% content_for :side_column do %>
+  <%= render :partial => "users/show_actions" %>
+<% end %>
+
+<h1><%= title @user.email%></h1>
+<hr />
+
+<table id="<%= dom_id(@user) %>" class="entry">
+  <tbody>
+    <tr>
+      <td>Email</td>
+      <td><%= @user.email %></td>
+    </tr>
+    <tr>
+      <td>Roles</td>
+      <td id="role_ids"><%= @user.display_roles %></td>
+    </tr>
+    <tr>
+      <td>Name</td>
+      <td><%= @user.full_name %></td>
+    </tr>
+    <tr>
+      <td>Sign In Count</td>
+      <td><%= @user.sign_in_count %></td>
+    </tr>
+    <tr>
+      <td>Current Sign In At</td>
+      <td><%= @user.current_sign_in_at %></td>
+    </tr>
+    <tr>
+      <td>Last Sign In At</td>
+      <td><%= @user.last_sign_in_at %></td>
+    </tr>
+    <tr>
+      <td>Last Sign In IP</td>
+      <td><%= @user.last_sign_in_ip %></td>
+    </tr>
+    <tr>
+      <td>Failed Attempts</td>
+      <td><%= @user.failed_attempts %></td>
+    </tr>
+    <tr>
+      <td>Locked At</td>
+      <td><%= @user.locked_at %></td>
+    </tr>
+    <tr>
+      <td>Created At</td>
+      <td><%= @user.created_at %></td>
+    </tr>
+    <tr>
+      <td>Updated At</td>
+      <td><%= @user.updated_at %></td>
+    </tr>
+  </tbody>
+</table>

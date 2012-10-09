@@ -1,0 +1,9 @@
+<% content_for :side_column do %>
+  <%= render :partial => "entities/edit_actions" %>
+<% end %>
+
+<h1><%= title @entity.name %></h1>
+<hr />
+<div class="panel">
+  <%= render :partial => 'form' %>
+</div>

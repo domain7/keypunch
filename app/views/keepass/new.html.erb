@@ -1,0 +1,4 @@
+<%= form_for :keepass, :url => keepass_path do |f| %>
+  <%= f.file_field :filename, :as => :file %>
+  <%= f.submit %>
+<% end %>

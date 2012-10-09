@@ -1,0 +1,11 @@
+<div class="panel">
+  <p>
+    <% if @entity.id %>
+      <%= link_to("Cancel", entity_path(@entity), :class => "nice radius white button mobile") %>
+    <% elsif @group %>
+      <%= link_to("Cancel", group_path(@group.id), :class => "nice radius white button mobile") %>
+    <% else %>
+      <%= link_to("Cancel", entities_path, :class => "nice radius white button mobile") %>
+    <% end %>
+  </p>
+</div>
